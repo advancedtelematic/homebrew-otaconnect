@@ -1,7 +1,8 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage ""
-  url "https://github.com/advancedtelematic/aktualizr/releases/download/2018.13/aktualizr-2018.13.tar.gz"
+  version "2018.13"
+  url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
   sha256 "782fa343c85be455d6e51bd774f3244e0dad093989ac9bb1d96215785f7e7314"
 
   depends_on "asn1c" => :build
@@ -14,9 +15,6 @@ class Aktualizr < Formula
   depends_on "python3" => :build
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    # Remove unrecognized options if warned by configure
-    
     mkdir "build" do
       system "cmake", "..", *std_cmake_args
       system "make"

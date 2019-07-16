@@ -1,7 +1,7 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage ""
-  version "2019.3"
+  version "2019.5"
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
   sha256 "782fa343c85be455d6e51bd774f3244e0dad093989ac9bb1d96215785f7e7314"
 

@@ -14,6 +14,12 @@ class Aktualizr < Formula
   depends_on "openssl" => :build
   depends_on "python3" => :build
 
+  bottle do
+    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2019.5"
+    cellar :any
+    sha256 "12d751281dc4406a796a12e0e30bc23f12e2143348686b398f44d9241e052e13" => :mojave
+  end
+
   def install
     mkdir "build" do
       system "cmake", "..", *std_cmake_args

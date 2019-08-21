@@ -1,7 +1,7 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage ""
-  version "2019.5"
+  version "2019.6"
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
   sha256 "782fa343c85be455d6e51bd774f3244e0dad093989ac9bb1d96215785f7e7314"
 
@@ -15,9 +15,9 @@ class Aktualizr < Formula
   depends_on "python3" => :build
 
   bottle do
-    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2019.5"
+    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2019.6"
     cellar :any
-    sha256 "12d751281dc4406a796a12e0e30bc23f12e2143348686b398f44d9241e052e13" => :mojave
+    sha256 "d9b049cfba08534f7b6b6a973c408046c2c9dcc5a3e4c266ca59f0aac80f8b1d" => :mojave
   end
 
   def install

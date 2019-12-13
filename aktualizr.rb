@@ -1,7 +1,7 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage ""
-  version "2019.11"
+  version "2019.9"
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
   sha256 "782fa343c85be455d6e51bd774f3244e0dad093989ac9bb1d96215785f7e7314"
 
@@ -11,18 +11,19 @@ class Aktualizr < Formula
   depends_on "libarchive"
   depends_on "libsodium"
   depends_on "curl-openssl"
-  depends_on "libp11"
   depends_on "pkgconfig" => :build
-  depends_on "openssl@1.1"
+  depends_on "openssl"
   depends_on "python3" => :build
 
+  bottle do
+    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2019.9"
+    cellar :any
+    sha256 "021255fc3b2b7409ab649adeb0abdb71efec564519ca7d0a6ad36d92abc9f8b6" => :mojave
+  end
 
   def install
     mkdir "build" do
-      openssl = Formula["openssl@1.1"]
-      system "cmake", "..", "-DCMAKE_PREFIX_PATH=#{openssl.opt_prefix};$CMAKE_PREFIX_PATH",
-                            "-DWARNING_AS_ERROR=OFF",
-                            *std_cmake_args
+      system "cmake", "..", *std_cmake_args
       system "make"
       system "mkdir", "-p", "#{bin}"
       system "cp", "./src/aktualizr_primary/aktualizr", "#{bin}/aktualizr"

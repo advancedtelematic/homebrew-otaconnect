@@ -1,4 +1,4 @@
-class Aktualizr < Formula
+class AktualizrDev < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage ""
   version = "2020.2"
@@ -16,7 +16,6 @@ class Aktualizr < Formula
   depends_on "python3" => :build
 
   bottle do
-    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/#{version}"
     cellar :any
     sha256 "021255fc3b2b7409ab649adeb0abdb71efec564519ca7d0a6ad36d92abc9f8b6" => :catalina
   end
@@ -30,9 +29,8 @@ class Aktualizr < Formula
       system "mkdir", "-p", "#{bin}"
       system "mkdir", "-p", "#{lib}"
 
-      system "cp", "./src/aktualizr_primary/aktualizr", "#{bin}/aktualizr"
+      system "cp", "./src/aktualizr_primary/aktualizr", "#{bin}/aktualizr-dev"
       system "cp", "./src/libaktualizr/libaktualizr_lib.dylib", "#{lib}"
-
     end
   end
 

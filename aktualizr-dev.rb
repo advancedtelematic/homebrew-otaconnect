@@ -16,7 +16,7 @@ class AktualizrDev < Formula
   keg_only "Don't interfere with a release version, this is current dev version of Aktualizr"
 
   def install
-   brew link --force  mkdir "build" do
+    mkdir "build" do
       git_revision = `git rev-parse --short HEAD`.chomp
       system "cmake", "..",
                       "-DAKTUALIZR_VERSION=dev-#{git_revision}",

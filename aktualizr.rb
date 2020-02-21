@@ -23,16 +23,14 @@ class Aktualizr < Formula
 
   def install
     mkdir "build" do
-      system "cmake", "..", "-DBoost_USE_MULTITHREADED=ON", "-DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib", "-DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib", *std_cmake_args
+      system "cmake", "..",
+                      "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+                      "-DBoost_USE_MULTITHREADED=ON",
+                      "-DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib",
+                      "-DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib",
+                      *std_cmake_args
 
-      system "make",  "-j#{ENV.make_jobs}"
-
-      system "mkdir", "-p", "#{bin}"
-      system "mkdir", "-p", "#{lib}"
-
-      system "cp", "./src/aktualizr_primary/aktualizr", "#{bin}/aktualizr"
-      system "cp", "./src/libaktualizr/libaktualizr_lib.dylib", "#{lib}"
-
+      system "make", "install", "-j#{ENV.make_jobs}"
     end
   end
 

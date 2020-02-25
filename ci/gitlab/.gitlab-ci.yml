@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+
+osx-build:
+  stage: build
+  before_script:
+    - brew uninstall -f aktualizr
+  script:
+    - brew tap advancedtelematic/otaconnect
+    - brew install --HEAD -v aktualizr
+    - aktualizr --version
+  tags:
+    - osx
+
+osx-test:
+  stage: test
+  script:
+    - aktualizr --version
+  tags:
+    - osx

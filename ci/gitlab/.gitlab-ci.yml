@@ -8,7 +8,7 @@ osx-build:
     - brew uninstall -f aktualizr
   script:
     - brew tap advancedtelematic/otaconnect
-    - brew install --HEAD -v aktualizr
+    - brew install --HEAD -v ./aktualizr.rb
     - aktualizr --version
   tags:
     - osx
@@ -16,6 +16,7 @@ osx-build:
 osx-test:
   stage: test
   script:
+    # consider triggering some of the aktualizr tests at this stage
     - aktualizr --version
   tags:
     - osx

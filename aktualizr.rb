@@ -4,8 +4,7 @@ class Aktualizr < Formula
 
   head "https://github.com/advancedtelematic/aktualizr.git"
 
-  # get the latest release tag
-  version = `git ls-remote --tags https://github.com/advancedtelematic/aktualizr.git | cut -d/ -f3- | sort -t. -nk1,2 -k3 | awk '/^[^{]*$/{version=$1}END{print version}'`.strip
+  version = "2020.3"
 
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
 
@@ -25,25 +24,10 @@ class Aktualizr < Formula
   bottle do
     root_url "https://github.com/advancedtelematic/aktualizr/releases/download/#{version}"
     cellar :any
-    sha256 "021255fc3b2b7409ab649adeb0abdb71efec564519ca7d0a6ad36d92abc9f8b6" => :mojave
+    sha256 "1015a4d457002c281a7c44a28422914d67d63548ee25e034875a17e6df88538d" => :mojave
   end
 
   def install
-    # double check that the version that has been checked out is the one that we expect
-    if build.stable?
-      # in case of a non HEAD brewing we want to build the latest stable release
-      expected_version = `git describe --abbrev=0`.strip
-    else
-      # in case of a HEAD brewing we want to build the tip of master branch
-      expected_version = ("HEAD-" + `git rev-parse --short HEAD`.strip)[0..11]
-    end
-
-    if expected_version != version
-      odie "!!! Invalid version of aktualizr: expected #{expected_version} got #{version}"
-    else
-      ohai "!!! Building #{expected_version} version of aktualizr..."
-    end
-
     args = %W[
         -DAKTUALIZR_VERSION=#{version}
         -DCMAKE_INSTALL_PREFIX=#{prefix}

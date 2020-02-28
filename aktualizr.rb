@@ -22,9 +22,9 @@ class Aktualizr < Formula
   depends_on "python3" => :build
 
   bottle do
-    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/#{version}"
+    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2020.3"
     cellar :any
-    sha256 "1015a4d457002c281a7c44a28422914d67d63548ee25e034875a17e6df88538d" => :mojave
+    sha256 "f42c799f7262f49a6debe2435254e14ef6bcc39b6168541a1fb09dffa6882f82" => :mojave
   end
 
   def install

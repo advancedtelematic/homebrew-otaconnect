@@ -1,9 +1,15 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
-  homepage ""
-  version = "2020.2"
+  homepage "https://github.com/advancedtelematic/aktualizr.git"
+
+  head "https://github.com/advancedtelematic/aktualizr.git"
+
+  version = "2020.3"
+
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}"
-  sha256 "782fa343c85be455d6e51bd774f3244e0dad093989ac9bb1d96215785f7e7314"
+
+  # in case of --HEAD brewing the global version attribute will be equal to HEAD-<short-latest-commit-hash-of-master>
+  # in case of stable/default brewing the global version will be equal to the latest release tag
 
   depends_on "openssl@1.1"
   depends_on "curl-openssl"
@@ -18,18 +24,20 @@ class Aktualizr < Formula
   bottle do
     root_url "https://github.com/advancedtelematic/aktualizr/releases/download/#{version}"
     cellar :any
-    sha256 "021255fc3b2b7409ab649adeb0abdb71efec564519ca7d0a6ad36d92abc9f8b6" => :catalina
+    sha256 "1015a4d457002c281a7c44a28422914d67d63548ee25e034875a17e6df88538d" => :mojave
   end
 
   def install
-    mkdir "build" do
-      system "cmake", "..",
-                      "-DCMAKE_INSTALL_PREFIX=#{prefix}",
-                      "-DBoost_USE_MULTITHREADED=ON",
-                      "-DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib",
-                      "-DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib",
-                      *std_cmake_args
+    args = %W[
+        -DAKTUALIZR_VERSION=#{version}
+        -DCMAKE_INSTALL_PREFIX=#{prefix}
+        -DBoost_USE_MULTITHREADED=ON
+        -DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib
+        -DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib
+    ]
 
+    mkdir "build" do
+      system "cmake", "..", *std_cmake_args, *args
       system "make", "install", "-j#{ENV.make_jobs}"
     end
   end

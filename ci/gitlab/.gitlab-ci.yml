@@ -1,0 +1,46 @@
+stages:
+  - test
+
+# test the current formula for the case of aktualizr brewing 
+# from the most recent release sources 
+# to make sure the formula changes do not break the brewing process that
+# mac users would normally invoke by runnning `brew install aktualizr`
+# provided that there is no bottle available for a given version
+brew-aktualizr-from-source:
+  stage: test
+  before_script:
+    - brew uninstall -f aktualizr
+  script:
+    - brew install -v -s ./aktualizr.rb
+    - aktualizr --version
+  tags:
+    - osx
+
+# test the current formula for the case of aktualizr brewing 
+# from the bottle if it's available
+# to make sure the formula changes do not break the brewing process that
+# mac users would normally invoke by runnning `brew install aktualizr`
+# provided that there is a bottle available for a given version
+brew-aktualizr-from-bottle:
+  stage: test
+  before_script:
+    - brew uninstall -f aktualizr
+  script:
+    - brew install -v --force-bottle ./aktualizr.rb
+    - aktualizr --version
+  tags:
+    - osx
+
+# test the current formula for the case of aktualizr brewing 
+# from the head of master branch 
+# to make sure the formula changes do not break the brewing process that
+# mac users would normally invoke by runnning `brew install --HEAD aktualizr`
+brew-aktualizr-head:
+  stage: test
+  before_script:
+    - brew uninstall -f aktualizr
+  script:
+    - brew install -v --HEAD ./aktualizr.rb
+    - aktualizr --version
+  tags:
+    - osx

@@ -1,8 +1,8 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
   homepage "https://github.com/advancedtelematic/aktualizr.git"
-  version = "2020.4"
-  revision = "f90e8996e826d130976a7b7f1835947b7e631025"
+  version = "2020.5"
+  revision = "20aa2e7785466c75f23e40ab2bd424a4a71ac8ec"
 
   url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}", :revision => "#{revision}"
   head "https://github.com/advancedtelematic/aktualizr.git"
@@ -11,9 +11,9 @@ class Aktualizr < Formula
   # in case of stable/default brewing the global version will be equal to the latest release tag
 
   bottle do
-    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2020.4"
+    root_url "https://github.com/advancedtelematic/aktualizr/releases/download/2020.5"
     cellar :any
-    sha256 "e396d4e9295e85fe0c3d3db03ce63a5ebe20c2be8919dac623d50e34b1924423" => :mojave
+    sha256 "20c97c565a2f96bdc9e3d9978fce5f89d2852b5b8b32810acf3b54c2d8eeaaf9" => :mojave
   end
 
   depends_on "cmake" => :build

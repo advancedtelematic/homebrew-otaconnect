@@ -4,7 +4,7 @@ class Aktualizr < Formula
   version = "2020.5"
   revision = "20aa2e7785466c75f23e40ab2bd424a4a71ac8ec"
 
-  url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => "#{version}", :revision => "#{revision}"
+  url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => version.to_s, :revision => revision.to_s
   head "https://github.com/advancedtelematic/aktualizr.git"
 
   # in case of --HEAD brewing the global version attribute will be equal to HEAD-<short-latest-commit-hash-of-master>
@@ -28,11 +28,11 @@ class Aktualizr < Formula
 
   def install
     args = %W[
-        -DAKTUALIZR_VERSION=#{version}
-        -DCMAKE_INSTALL_PREFIX=#{prefix}
-        -DBoost_USE_MULTITHREADED=ON
-        -DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib
-        -DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib
+      -DAKTUALIZR_VERSION=#{version}
+      -DCMAKE_INSTALL_PREFIX=#{prefix}
+      -DBoost_USE_MULTITHREADED=ON
+      -DOPENSSL_SSL_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libssl.dylib
+      -DOPENSSL_CRYPTO_LIBRARY=#{Formula["openssl@1.1"].opt_prefix}/lib/libcrypto.dylib
     ]
 
     mkdir "build" do

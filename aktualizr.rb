@@ -18,7 +18,7 @@ class Aktualizr < Formula
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
-  depends_on "python" => :build
+  depends_on "python@3.8" => :build
   depends_on "asn1c"
   depends_on "boost"
   depends_on "curl-openssl"

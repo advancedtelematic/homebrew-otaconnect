@@ -4,7 +4,7 @@ class Aktualizr < Formula
   version = "2020.8"
   revision = "6091708b61ecd8a66cb1052875dbd881e5abc7af"
 
-  url "https://github.com/advancedtelematic/aktualizr.git", :using => :git, :tag => version.to_s, :revision => revision.to_s
+  url "https://github.com/advancedtelematic/aktualizr.git", using: :git, tag: version.to_s, revision: revision.to_s
   head "https://github.com/advancedtelematic/aktualizr.git"
 
   # in case of --HEAD brewing the global version attribute will be equal to HEAD-<short-latest-commit-hash-of-master>

@@ -1,6 +1,6 @@
 class Aktualizr < Formula
   desc "C++ Client for HERE OTA Connect"
-  homepage "https://github.com/advancedtelematic/aktualizr.git"
+  homepage "https://github.com/advancedtelematic/aktualizr"
   version = "2020.8"
   revision = "6091708b61ecd8a66cb1052875dbd881e5abc7af"
 

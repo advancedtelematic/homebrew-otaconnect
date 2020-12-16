@@ -21,7 +21,7 @@ class Aktualizr < Formula
   depends_on "python@3.8" => :build
   depends_on "asn1c"
   depends_on "boost"
-  depends_on "curl-openssl"
+  depends_on "curl"
   depends_on "libarchive"
   depends_on "libsodium"
   depends_on "openssl@1.1"
@@ -42,6 +42,6 @@ class Aktualizr < Formula
   end
 
   test do
-    system "#{bin}/aktualizr --help"
+    system "#{bin}/aktualizr", "--help"
   end
 end

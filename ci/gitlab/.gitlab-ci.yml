@@ -3,7 +3,7 @@ stages:
 
 brew-lint-formula:
   stage: test
-  script: brew audit aktualizr.rb
+  script: brew audit --except-cops=Sorbet/FalseSigil,Style/Documentation,Style/FrozenStringLiteralComment,Metrics/MethodLength aktualizr.rb
   tags:
     - osx
 
